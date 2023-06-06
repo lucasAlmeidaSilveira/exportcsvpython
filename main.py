@@ -1,6 +1,7 @@
 import cloudinary
 import cloudinary.api
 import csv
+import os
 
 # Configurar as credenciais do Cloudinary
 cloudinary.config(
@@ -14,8 +15,11 @@ images = cloudinary.api.resources()
 
 # Verificar se as imagens foram encontradas
 if 'resources' in images:
-  # Nome do arquivo CSV
-  csv_filename = 'imagens.csv'
+  # Caminho do arquivo CSV
+  csv_filename = r'Z:/compartilhada/E-commerce Arte Própria/URLImagens.csv'
+
+  # Verificar se o diretório pai do arquivo CSV existe, caso contrário, criar
+  os.makedirs(os.path.dirname(csv_filename), exist_ok=True)
 
   # Abrir o arquivo CSV em modo de escrita
   with open(csv_filename, 'w', newline='', encoding='utf-8') as csvfile:
