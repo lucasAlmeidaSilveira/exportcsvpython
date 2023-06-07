@@ -9,11 +9,32 @@ cloudinary.config(
   api_secret='octTeoYlz-47kE9HJK5kJi2hr0k'
 )
 
-# Recuperar as informações das imagens do Cloudinary
-images = cloudinary.api.resources()
+# Definir o número máximo de resultados por página
+max_results = 500  # Defina o valor desejado ou use -1 para recuperar todas as imagens
+
+# Variável para armazenar todas as imagens
+all_images = []
+
+# Primeira chamada para recuperar as imagens
+result = cloudinary.api.resources(max_results=max_results)
 
 # Verificar se as imagens foram encontradas
-if 'resources' in images:
+if 'resources' in result:
+  all_images.extend(result['resources'])
+  next_cursor = result.get('next_cursor')
+
+  # Continuar recuperando imagens enquanto houver um próximo cursor
+  while next_cursor:
+    result = cloudinary.api.resources(max_results=max_results, next_cursor=next_cursor)
+
+    if 'resources' in result:
+      all_images.extend(result['resources'])
+      next_cursor = result.get('next_cursor')
+    else:
+      break
+
+# Verificar se foram encontradas imagens
+if all_images:
   # Caminho do arquivo CSV
   csv_filename = r'Z:/compartilhada/E-commerce Arte Própria/URLImagens.csv'
 
@@ -29,7 +50,7 @@ if 'resources' in images:
     writer.writeheader()
 
     # Escrever as URLs de cada imagem no arquivo CSV
-    for image in images['resources']:
+    for image in all_images:
       url = image['url']
 
       # Escrever a linha no arquivo CSV
