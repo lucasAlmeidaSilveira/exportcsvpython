@@ -41,7 +41,7 @@ if all_images:
   # Abrir o arquivo CSV em modo de escrita (substituir arquivo existente)
   with open(csv_filename, 'w', newline='', encoding='utf-8') as csvfile:
     # Cabeçalho do CSV
-    fieldnames = ['URL']
+    fieldnames = ['Nome', 'URL']
 
     # Criar o objeto de escrita CSV
     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
@@ -49,12 +49,13 @@ if all_images:
     # Escrever o cabeçalho no arquivo CSV
     writer.writeheader()
 
-    # Escrever as URLs de cada imagem no arquivo CSV
+    # Escrever as informações de cada imagem no arquivo CSV
     for image in all_images:
+      nome = image['public_id']
       url = image['url']
 
       # Escrever a linha no arquivo CSV
-      writer.writerow({'URL': url})
+      writer.writerow({'Nome': nome, 'URL': url})
 
   print(f'O arquivo CSV "{csv_filename}" foi gerado com sucesso!')
 else:
