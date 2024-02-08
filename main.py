@@ -4,16 +4,16 @@ import csv
 
 # Configurar as credenciais do Cloudinary
 cloudinary.config(
-  cloud_name='de9nzomvv',
-  api_key='952772444116636',
-  api_secret='octTeoYlz-47kE9HJK5kJi2hr0k'
+  cloud_name= 'dkhqk9bz2', 
+  api_key= '766563287624973', 
+  api_secret= 'vxveqxIg-ZigtalWZWpPi7n7GBo' 
 )
 
 # Definir o número máximo de resultados por página
 max_results = 500  # Defina o valor desejado ou use -1 para recuperar todas as imagens
 
 # Pasta específica no Cloudinary (caminho completo)
-folder_path = 'Dropshipping/Quadros/'  # Substitua pelo caminho completo da pasta desejada
+folder_path = 'Artes Outlet dos Quadros'  # Substitua pelo caminho completo da pasta desejada
 
 # Variável para armazenar todas as imagens
 all_images = []
@@ -38,7 +38,7 @@ get_images_in_folder(folder_path)
 # Verificar se foram encontradas imagens
 if all_images:
     # Caminho do arquivo CSV
-    csv_filename = r'C:/Users/Administrador/OneDrive - Arte Propria/SISTEMA/DROPSHIPPING/URLImages2.csv'
+    csv_filename = r'C:/Users/Administrador/OneDrive - Arte Propria/SISTEMA/ARTE PRÓPRIA/Nuvemshop/DownloadsURLImagens.csv'
 
     # Abrir o arquivo CSV em modo de escrita (substituir arquivo existente)
     with open(csv_filename, 'w', newline='', encoding='utf-8') as csvfile:
